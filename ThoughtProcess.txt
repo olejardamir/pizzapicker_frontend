@@ -1,0 +1,12 @@
+Thought process for the front-end:
+-Since the hierarchy of the front-end in vue.js is a tree the main component will have 4 sections.
+One section is a title, second is the header, third is content and fourth is the picker/result buttons
+-The only parts that will change are title and content. The increment is a simple onclick function
+-First, I am creating the general HTML/CSS and graphical layout
+-Enable the button-press increment beside small pizza icon
+
+
+-Now when the layout is done, start creating the home
+-Transitions are left for the end
+
+
