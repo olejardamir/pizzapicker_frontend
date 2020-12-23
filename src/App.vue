@@ -1,49 +1,59 @@
 <template>
-<!--  <Home/>-->
   <div id="chef">
-    <img src="./assets/chef.png" width="500">
-  </div>
-<div id="menu">
-  <div class="title">
-    {{ title }}
-  </div>
-  <div class="box">
-  <div id="header">
-    <div id="leftIcon" class="left-align headerFont">
-      <img src="./assets/leftIcon.png" width="25"> 3
+    <div class="question" style="display: block">
+      <img src="./assets/chefq.png" width="500">
     </div>
-    <div id="logo" class="center-align">
-      <img src="./assets/logo.png" height="50">
-    </div>
-    <div id="rightIcon" class="right-align headerFont">
-      <img src="./assets/rightIcon.png" width="25"> {{increment}}
+    <div class="answer" style="display: none">
+      <img src="./assets/chef.png" width="500">
     </div>
   </div>
-  <div class="content">
-    <img src="./assets/mock.png">
-  </div>
-  <div>
-    <div id="mainButtons">
-      <div id="leftButton" class="pickerBgr" v-on:click="processPicker">
-        <div class="buttonFont">
-        Picker</div></div>
-      <div id="rightButton" class="resultsBgr" v-on:click="processResults">
-        <div class="buttonFont">
-        Results</div></div>
+  <div id="menu">
+    <div class="title">
+      {{ title }}
+    </div>
+    <div class="box">
+      <div id="header">
+        <div id="leftIcon" class="left-align headerFont">
+          <img src="./assets/leftIcon.png" width="25"> 3
+        </div>
+        <div id="logo" class="center-align">
+          <img src="./assets/logo.png" height="50">
+        </div>
+        <div id="rightIcon" class="right-align headerFont">
+          <img src="./assets/rightIcon.png" width="25"> {{increment}}
+        </div>
+      </div>
+      <div class="content">
+        <div id="homeComponent" style="display: block"><Home/></div>
+        <div id="newResultComponent" style="display:none;"><NewResult/></div>
+        <div id="emptyResultComponent" style="display:none;"><EmptyResult/></div>
+      </div>
+      <div>
+        <div id="mainButtons">
+          <div id="leftButton" class="pickerBgr" v-on:click="processPicker">
+            <div class="buttonFont">
+              Picker</div></div>
+          <div id="rightButton" class="resultsBgr" v-on:click="processResults">
+            <div class="buttonFont">
+              Results</div></div>
+        </div>
+      </div>
     </div>
   </div>
-  </div>
-</div>
 
 </template>
 
 <script>
-// import Home from './components/Home.vue'
+import Home from "./components/Home.vue";
+import NewResult from "./components/NewResult.vue";
+import EmptyResult from "./components/EmptyResult.vue";
 
 export default {
   name: 'Pizza Picker',
   components: {
-    // Home
+    Home,
+    NewResult,
+    EmptyResult
   },
   data: function () {
     return {
@@ -52,18 +62,37 @@ export default {
     };
   },
   methods:{
+
+    processPicker(){
+      this.title = "Home";
+      document.getElementsByClassName('pickerBgr')[0].style.background = "white";
+      document.getElementsByClassName('resultsBgr')[0].style.background = "gray";
+      document.getElementsByClassName('question')[0].style.display = "block";
+      document.getElementsByClassName('answer')[0].style.display = "none";
+      this.displayComponent("homeComponent");
+    },
     processResults(){
       this.title = "Empty Result";
       this.increment = this.increment+1;
       document.getElementsByClassName('pickerBgr')[0].style.background = "gray";
       document.getElementsByClassName('resultsBgr')[0].style.background = "white";
+      document.getElementsByClassName('question')[0].style.display = "none";
+      document.getElementsByClassName('answer')[0].style.display = "block";
+      this.displayComponent("emptyResultComponent");
+    },
+    processTellus(){
+      this.title = "New Result";
+      document.getElementsByClassName('question')[0].style.display = "none";
+      document.getElementsByClassName('answer')[0].style.display = "block";
+      this.displayComponent("newResultComponent");
+    },
+    displayComponent(componentName){
+      document.getElementById("homeComponent").style.display = "none";
+      document.getElementById("newResultComponent").style.display = "none";
+      document.getElementById("emptyResultComponent").style.display = "none";
+      document.getElementById(componentName).style.display = "block";
 
     },
-    processPicker(){
-      this.title = "Home";
-      document.getElementsByClassName('pickerBgr')[0].style.background = "white";
-      document.getElementsByClassName('resultsBgr')[0].style.background = "gray";
-    }
   }
 }
 </script>
@@ -119,7 +148,7 @@ body {
   margin: 0;
   position: absolute;
   left: 4%;
-  top: 32%;
+  top: 16%;
 }
 .center-align {
   margin: 0;

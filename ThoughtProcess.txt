@@ -9,4 +9,11 @@ One section is a title, second is the header, third is content and fourth is the
 -Now when the layout is done, start creating the home
 -Transitions are left for the end
 
+-Since Home is a child of App, we need to call the parent from a child. Unfortunately, nothing worked except:
+this.$parent.$options.methods.methodName();
+Alternative is to use mixins, but for the purpose of this assignment, I believe it is sufficient.
+
+- v-if does not work for more than 2 if-then divs, so I need to use the css display trick.4
+
+
 
