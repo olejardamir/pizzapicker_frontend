@@ -2,6 +2,8 @@
 
 ## Project setup
 ```
+git clone https://github.com/olejardamir/pizzapicker_frontend.git
+cd pizzapicker_frontend
 npm install
 ```
 
